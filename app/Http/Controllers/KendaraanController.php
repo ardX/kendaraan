@@ -3,10 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
+use App\Services\KendaraanService;
 use Illuminate\Http\Request;
 
 class KendaraanController extends Controller
 {
+    /**
+     * @var kendaraanService
+     */
+    protected $kendaraanService;
+    
+    /**
+     * KendaraanController Constructor
+     *
+     * @param KendaraanService $kendaraanService
+     *
+     */
+    public function __construct(KendaraanService $kendaraanService)
+    {
+        $this->kendaraanService = $kendaraanService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +31,18 @@ class KendaraanController extends Controller
      */
     public function index()
     {
-        //
+        $result = ['status' => 200];
+
+        try {
+            $result['data'] = $this->kendaraanService->getAll();
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        return response()->json($result, $result['status']);
     }
 
     /**
@@ -35,18 +63,44 @@ class KendaraanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->only([
+            'title',
+            'description',
+        ]);
+
+        $result = ['status' => 200];
+
+        try {
+            $result['data'] = $this->kendaraanService->saveKendaraanData($data);
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        return response()->json($result, $result['status']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Kendaraan  $kendaraan
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Kendaraan $kendaraan)
+    public function show($id)
     {
-        //
+        $result = ['status' => 200];
+
+        try {
+            $result['data'] = $this->kendaraanService->getById($id);
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+        return response()->json($result, $result['status']);
     }
 
     /**
@@ -64,22 +118,49 @@ class KendaraanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kendaraan  $kendaraan
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kendaraan $kendaraan)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->only([
+            'title',
+            'description'
+        ]);
+
+        $result = ['status' => 200];
+
+        try {
+            $result['data'] = $this->kendaraanService->updateKendaraan($data, $id);
+
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        return response()->json($result, $result['status']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Kendaraan  $kendaraan
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kendaraan $kendaraan)
+    public function destroy($id)
     {
-        //
+        $result = ['status' => 200];
+
+        try {
+            $result['data'] = $this->kendaraanService->deleteById($id);
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+        return response()->json($result, $result['status']);
     }
 }
