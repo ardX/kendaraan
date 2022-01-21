@@ -41,7 +41,7 @@ class KendaraanRepository
     public function getById($id)
     {
         return $this->kendaraan
-            ->where('id', $id)
+            ->where('_id', $id)
             ->get();
     }
 
@@ -71,7 +71,6 @@ class KendaraanRepository
      */
     public function update($data, $id)
     {
-        
         $kendaraan = $this->kendaraan->find($id);
 
         $kendaraan->title = $data['title'];
@@ -90,11 +89,9 @@ class KendaraanRepository
      */
     public function delete($id)
     {
-        
         $kendaraan = $this->kendaraan->find($id);
         $kendaraan->delete();
 
         return $kendaraan;
     }
-
 }
