@@ -6,16 +6,6 @@ class Motor extends Kendaraan
 {
     protected $collection = 'motor';
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    /*protected $child_fillable = [
-        'mesin',
-        'tipe_suspensi',
-        'tipe_transmisi'
-    ];
-    /**
      * Create a new Eloquent model instance.
      *
      * @param  array  $attributes
