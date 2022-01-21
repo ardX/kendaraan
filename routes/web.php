@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('kendaraan', 'KendaraanController');
+Route::resource('kendaraan', '\App\Http\Controllers\KendaraanController');
