@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('kendaraan', '\App\Http\Controllers\KendaraanController');
+Route::resource('motor', '\App\Http\Controllers\MotorController');
