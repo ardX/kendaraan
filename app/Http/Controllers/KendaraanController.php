@@ -64,8 +64,9 @@ class KendaraanController extends Controller
     public function store(Request $request)
     {
         $data = $request->only([
-            'title',
-            'description',
+            'tahun_keluaran',
+            'warna',
+            'harga'
         ]);
 
         $result = ['status' => 200];
@@ -124,8 +125,9 @@ class KendaraanController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->only([
-            'title',
-            'description'
+            'tahun_keluaran',
+            'warna',
+            'harga'
         ]);
 
         $result = ['status' => 200];

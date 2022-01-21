@@ -86,8 +86,9 @@ class KendaraanService
     public function updateKendaraan($data, $id)
     {
         $validator = Validator::make($data, [
-            'title' => 'bail|min:2',
-            'description' => 'bail|max:255'
+            'tahun_keluaran' => 'required|numeric',
+            'warna' => 'required',
+            'harga' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -120,8 +121,9 @@ class KendaraanService
     public function saveKendaraanData($data)
     {
         $validator = Validator::make($data, [
-            'title' => 'required',
-            'description' => 'required'
+            'tahun_keluaran' => 'required|numeric',
+            'warna' => 'required',
+            'harga' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {

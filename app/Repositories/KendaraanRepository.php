@@ -55,8 +55,9 @@ class KendaraanRepository
     {
         $kendaraan = new $this->kendaraan;
 
-        $kendaraan->title = $data['title'];
-        $kendaraan->description = $data['description'];
+        $kendaraan->tahun_keluaran = $data['tahun_keluaran'];
+        $kendaraan->warna = $data['warna'];
+        $kendaraan->harga = $data['harga'];
 
         $kendaraan->save();
 
@@ -73,8 +74,9 @@ class KendaraanRepository
     {
         $kendaraan = $this->kendaraan->find($id);
 
-        $kendaraan->title = $data['title'];
-        $kendaraan->description = $data['description'];
+        $kendaraan->tahun_keluaran = $data['tahun_keluaran'];
+        $kendaraan->warna = $data['warna'];
+        $kendaraan->harga = $data['harga'];
 
         $kendaraan->update();
 
