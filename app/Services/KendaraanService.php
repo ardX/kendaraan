@@ -35,22 +35,24 @@ class KendaraanService
      */
     public function deleteById($id)
     {
-        DB::beginTransaction();
+        //DB::beginTransaction();
+        $session = DB::getMongoClient()->startSession();
+        $session->startTransaction();
 
         try {
             $kendaraan = $this->kendaraanRepository->delete($id);
 
         } catch (Exception $e) {
-            DB::rollBack();
+            //DB::rollBack();
+            $session->abortTransaction();
             Log::info($e->getMessage());
 
             throw new InvalidArgumentException('Unable to delete kendaraan data');
         }
 
-        DB::commit();
-
+        //DB::commit();
+        $session->commitTransaction();
         return $kendaraan;
-
     }
 
     /**
@@ -105,9 +107,7 @@ class KendaraanService
         }
 
         DB::commit();
-
         return $kendaraan;
-
     }
 
     /**
