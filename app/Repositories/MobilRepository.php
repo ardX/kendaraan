@@ -52,10 +52,12 @@ class MobilRepository
      */
     public function countAll()
     {
+        $semua = $this->mobil->count();
+        $terjual = \App\Models\JualMobil::with('mobil')->get()->count();
         $result = [
-            'all' =>  $this->mobil->count(),
-            'sold' =>  $this->mobil->count(),
-            'not_yet_sold' =>  $this->mobil->count()
+            'semua' =>  $semua,
+            'terjual' =>  $terjual,
+            'belum_terjual' =>  $semua-$terjual
         ];
         return $result;
     }

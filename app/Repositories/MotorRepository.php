@@ -52,10 +52,12 @@ class MotorRepository
      */
     public function countAll()
     {
+        $semua = $this->motor->count();
+        $terjual = \App\Models\JualMotor::with('motor')->get()->count();
         $result = [
-            'all' =>  $this->motor->count(),
-            'sold' =>  $this->motor->count(),
-            'not_yet_sold' =>  $this->motor->count()
+            'semua' =>  $semua,
+            'terjual' =>  $terjual,
+            'belum_terjual' =>  $semua-$terjual
         ];
         return $result;
     }
