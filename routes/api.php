@@ -21,11 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', '\App\Http\Controllers\UserController@register');
 Route::post('login', '\App\Http\Controllers\UserController@login');
 
-Route::resource('mobil', '\App\Http\Controllers\MobilController');
-Route::resource('motor', '\App\Http\Controllers\MotorController');
-Route::resource('jual/mobil', '\App\Http\Controllers\JualMobilController');
-Route::resource('jual/motor', '\App\Http\Controllers\JualMotorController');
-Route::get('stock/mobil', ['as' => 'stock.mobil', 'uses' => '\App\Http\Controllers\MobilController@stock']);
-Route::get('stock/motor', ['as' => 'stock.motor', 'uses' => '\App\Http\Controllers\MotorController@stock']);
-Route::get('report/mobil/{id?}', ['as' => 'report.mobil', 'uses' => '\App\Http\Controllers\JualMobilController@report']);
-Route::get('report/motor/{id?}', ['as' => 'report.motor', 'uses' => '\App\Http\Controllers\JualMotorController@report']);
+Route::resource('mobil', '\App\Http\Controllers\MobilController')->middleware('jwt.verify');
+Route::resource('motor', '\App\Http\Controllers\MotorController')->middleware('jwt.verify');
+Route::resource('jual/mobil', '\App\Http\Controllers\JualMobilController')->middleware('jwt.verify');
+Route::resource('jual/motor', '\App\Http\Controllers\JualMotorController')->middleware('jwt.verify');
+Route::get('stock/mobil', ['as' => 'stock.mobil', 'uses' => '\App\Http\Controllers\MobilController@stock'])->middleware('jwt.verify');
+Route::get('stock/motor', ['as' => 'stock.motor', 'uses' => '\App\Http\Controllers\MotorController@stock'])->middleware('jwt.verify');
+Route::get('report/mobil/{id?}', ['as' => 'report.mobil', 'uses' => '\App\Http\Controllers\JualMobilController@report'])->middleware('jwt.verify');
+Route::get('report/motor/{id?}', ['as' => 'report.motor', 'uses' => '\App\Http\Controllers\JualMotorController@report'])->middleware('jwt.verify');
