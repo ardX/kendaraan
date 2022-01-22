@@ -22,6 +22,6 @@ class JualMotor extends Jual
 
     public function motor()
     {
-        return $this->hasOne('App\Models\Motor::class');
+        return $this->hasOne('App\Models\Motor', 'motor_id', '_id');
     }
 }

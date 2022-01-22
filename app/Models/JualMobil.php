@@ -22,6 +22,6 @@ class JualMobil extends Jual
 
     public function mobil()
     {
-        return $this->hasOne('App\Models\Mobil::class');
+        return $this->hasOne('App\Models\Mobil', 'mobil_id', '_id');
     }
 }
