@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mobil;
 use App\Services\MobilService;
 use Illuminate\Http\Request;
+use Exception;
 
 class MobilController extends Controller
 {

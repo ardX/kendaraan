@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Motor;
 use App\Services\MotorService;
 use Illuminate\Http\Request;
+use Exception;
 
 class MotorController extends Controller
 {
