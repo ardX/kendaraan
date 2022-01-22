@@ -109,4 +109,19 @@ class JualMobilRepository
 
         return $jualMobil;
     }
+    
+    /**
+     * Get jualMobil by id
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function reportById($id)
+    {
+        $data = $this->jualMobil->where('_id', $id)->first();
+        $mobil = \App\Models\Mobil::where('_id', $data['mobil_id'])->first();
+        $data['mobil'] = $mobil;
+        $data['keuntungan'] = $data['harga_jual']-$mobil['harga'];
+        return $data;
+    }
 }

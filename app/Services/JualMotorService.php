@@ -146,4 +146,14 @@ class JualMotorService
         return $result;
     }
 
+    /**
+     * Get jualMotor by id.
+     *
+     * @param $id
+     * @return String
+     */
+    public function reportById($id)
+    {
+        return $this->jualMotorRepository->reportById($id);
+    }
 }

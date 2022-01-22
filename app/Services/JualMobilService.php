@@ -146,4 +146,14 @@ class JualMobilService
         return $result;
     }
 
+    /**
+     * Get jualMobil by id.
+     *
+     * @param $id
+     * @return String
+     */
+    public function reportById($id)
+    {
+        return $this->jualMobilRepository->reportById($id);
+    }
 }

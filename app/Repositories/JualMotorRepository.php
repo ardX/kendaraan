@@ -108,4 +108,19 @@ class JualMotorRepository
 
         return $jualMotor;
     }
+    
+    /**
+     * Get jualMotor by id
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function reportById($id)
+    {
+        $data = $this->jualMotor->where('_id', $id)->first();
+        $motor = \App\Models\Motor::where('_id', $data['motor_id'])->first();
+        $data['motor'] = $motor;
+        $data['keuntungan'] = $data['harga_jual']-$motor['harga'];
+        return $data;
+    }
 }

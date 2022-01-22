@@ -187,4 +187,25 @@ class JualMotorController extends Controller
         }
         return response()->json($result, $result['status']);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function report($id)
+    {
+        $result = ['status' => 200];
+
+        try {
+            $result['data'] = $this->jualmotorService->reportById($id);
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+        return response()->json($result, $result['status']);
+    }
 }
