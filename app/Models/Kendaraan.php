@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Kendaraan extends Model
+abstract class Kendaraan extends Model
 {
     /**
      * The attributes that are mass assignable.
