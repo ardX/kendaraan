@@ -13,7 +13,7 @@ class CreateMotorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('motors', function (Blueprint $table) {
+        Schema::create('motor', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('tahun_keluaran');
             $table->string('warna');
@@ -32,6 +32,6 @@ class CreateMotorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('motors');
+        Schema::dropIfExists('motor');
     }
 }
