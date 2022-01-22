@@ -19,5 +19,7 @@ Route::get('/', function () {
 
 Route::resource('mobil', '\App\Http\Controllers\MobilController');
 Route::resource('motor', '\App\Http\Controllers\MotorController');
+Route::resource('jual/mobil', '\App\Http\Controllers\JualMobilController');
+Route::resource('jual/motor', '\App\Http\Controllers\JualMotorController');
 Route::get('stock/mobil', ['as' => 'stock.mobil', 'uses' => '\App\Http\Controllers\MobilController@stock']);
 Route::get('stock/motor', ['as' => 'stock.motor', 'uses' => '\App\Http\Controllers\MotorController@stock']);
