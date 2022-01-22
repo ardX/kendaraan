@@ -77,6 +77,16 @@ class MotorService
     }
 
     /**
+     * Count all motor.
+     *
+     * @return String
+     */
+    public function countAll()
+    {
+        return $this->motorRepository->countAll();
+    }
+
+    /**
      * Update motor data
      * Store to DB if there are no errors.
      *

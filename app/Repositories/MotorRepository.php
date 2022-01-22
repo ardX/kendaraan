@@ -46,6 +46,21 @@ class MotorRepository
     }
 
     /**
+     * Count all motors.
+     *
+     * @return Motor $motor
+     */
+    public function countAll()
+    {
+        $result = [
+            'all' =>  $this->motor->count(),
+            'sold' =>  $this->motor->count(),
+            'not_yet_sold' =>  $this->motor->count()
+        ];
+        return $result;
+    }
+
+    /**
      * Save Motor
      *
      * @param $data

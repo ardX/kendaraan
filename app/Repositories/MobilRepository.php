@@ -46,6 +46,21 @@ class MobilRepository
     }
 
     /**
+     * Count all mobils.
+     *
+     * @return Mobil $mobil
+     */
+    public function countAll()
+    {
+        $result = [
+            'all' =>  $this->mobil->count(),
+            'sold' =>  $this->mobil->count(),
+            'not_yet_sold' =>  $this->mobil->count()
+        ];
+        return $result;
+    }
+
+    /**
      * Save Mobil
      *
      * @param $data

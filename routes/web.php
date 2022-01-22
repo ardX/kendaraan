@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('kendaraan', '\App\Http\Controllers\KendaraanController');
-Route::resource('motor', '\App\Http\Controllers\MotorController');
 Route::resource('mobil', '\App\Http\Controllers\MobilController');
+Route::resource('motor', '\App\Http\Controllers\MotorController');
+Route::get('stock/mobil', ['as' => 'stock.mobil', 'uses' => '\App\Http\Controllers\MobilController@stock']);
+Route::get('stock/motor', ['as' => 'stock.motor', 'uses' => '\App\Http\Controllers\MotorController@stock']);

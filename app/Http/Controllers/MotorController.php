@@ -47,6 +47,27 @@ class MotorController extends Controller
     }
 
     /**
+     * Display count of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function stock()
+    {
+        $result = ['status' => 200];
+
+        try {
+            $result['data'] = $this->motorService->countAll();
+        } catch (Exception $e) {
+            $result = [
+                'status' => 500,
+                'error' => $e->getMessage()
+            ];
+        }
+
+        return response()->json($result, $result['status']);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

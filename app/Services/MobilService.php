@@ -77,6 +77,16 @@ class MobilService
     }
 
     /**
+     * Count all mobil.
+     *
+     * @return String
+     */
+    public function countAll()
+    {
+        return $this->mobilRepository->countAll();
+    }
+
+    /**
      * Update mobil data
      * Store to DB if there are no errors.
      *
