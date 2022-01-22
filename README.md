@@ -1,66 +1,96 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Kendaraan
+## _Backend penjualan kendaraan bekas sederhana_
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Kendaraan adalah aplikasi backend sederhana untuk penjualan kendaraan bekas meliputi mobil dan motor.
 
-## About Laravel
+## Fitur
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Menambah data kendaraan bekas
+- Penjualan kendaraan bekas
+- Laporan keuntungan penjualan
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Software yang digunakan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Kendaraan menggunakan beberapa software framework, dan library untuk dapat bisa berjalan dengan baik:
 
-## Learning Laravel
+- Laravel 8
+- PHP 8
+- MongoDB 4.2
+- JWT
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalasi
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Instalasi menggunakan basis Debian 9 Stretch. Untuk distro lain dapat menyesuaikan.
 
-## Laravel Sponsors
+Instalasi beberapa tools yang digunakan (nginx dan package lainnya)
+```sh
+sudo apt update
+sudo apt upgrade
+sudo apt install -y git nano nginx nginx-extras software-properties-common lsb-release apt-transport-https ca-certificates curl software-properties-common gnupg2 wget unzip
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Instalasi PHP 8.0 dan PHP MongoDB
+```sh
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/sury-php.list
+wget -qO - https://packages.sury.org/php/apt.gpg | sudo apt-key add -
+sudo apt update
+sudo apt install php8.0 php8.0-fpm php8.0-dev php8.0-mongodb php8.0-xml php8.0-zip php8.0-cli php8.0-curl php8.0-mbstring php8.0-bz2 php8.0-gd php8.0-imap  php8.0-bcmath php-zip
+sudo update-alternatives --set php /usr/bin/php8.0
+sudo update-alternatives --set php-config /usr/bin/php-config8.0
+sudo update-alternatives --set phpize /usr/bin/phpize8.0
+sudo pecl install mongodb
+```
+Silahkan tambahkan ekstensi mongodb ke php.ini
 
-### Premium Partners
+Instalasi MongoDB 4.2
+```sh
+curl https://www.mongodb.org/static/pgp/server-4.2.asc | sudo apt-key add -
+sudo nano /etc/apt/sources.list.d/mongodb-org-4.2.list
+sudo apt update
+sudo apt-get install mongodb-org
+sudo curl -o /etc/init.d/mongod https://raw.githubusercontent.com/mongodb/mongo/master/debian/init.d
+sudo chmod +x /etc/init.d/mongod
+sudo service mongod enable
+sudo service mongod start
+sudo service mongod status
+```
+Cek apakah service mongod sudah berjalan dengan baik.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+Instalasi Composer
 
-## Contributing
+```sh
+wget -O composer-setup.php https://getcomposer.org/installer
+sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Unduh project dari GitHub
+> project dibangun dengan laravel 8.*
+> composer create-project laravel/laravel="8.*" namaproject
 
-## Code of Conduct
+```sh
+git clone https://github.com/ardX/kendaraan.git
+cd kendaraan
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```
+Backend sudah dapat diakses melalui http://localhost:8000/api
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Tautan yang dapat diakses
+- http://localhost:8000/api/register digunakan untuk pendaftaran pengguna
+- http://localhost:8000/api/login digunakan untuk pengguna masuk
+- http://localhost:8000/api/mobil digunakan untuk menampilkan daftar mobil + CRUD
+- http://localhost:8000/api/motor digunakan untuk menampilkan daftar motor + CRUD
+- http://localhost:8000/api/jual/mobil digunakan untuk menampilkan daftar penjualan mobil + CRUD
+- http://localhost:8000/api/jual/motor digunakan untuk menampilkan daftar penjualan motor + CRUD
+- http://localhost:8000/api/stock/mobil digunakan untuk menampilkan jumlah stok mobil
+- http://localhost:8000/api/stock/motor digunakan untuk menampilkan  jumlah stok motor
+- http://localhost:8000/api/report/mobil/{id?} digunakan untuk menampilkan laporan keuntungan penjualan mobil
+- http://localhost:8000/api/report/motor/{id?} digunakan untuk menampilkan laporan keuntungan penjualan motor
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT
+
+**Software gratis, yay!**
