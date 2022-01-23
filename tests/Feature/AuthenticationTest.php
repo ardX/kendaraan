@@ -10,7 +10,7 @@ class AuthenticationTest extends TestCase
     public function testRequiredFieldsForRegistration()
     {
         $this->json('POST', 'api/register', ['Accept' => 'application/json'])
-            ->assertStatus(422)
+            ->assertStatus(400)
             ->assertJson([
                 "message" => "The given data was invalid.",
                 "errors" => [
@@ -30,7 +30,7 @@ class AuthenticationTest extends TestCase
         ];
 
         $this->json('POST', 'api/register', $userData, ['Accept' => 'application/json'])
-            ->assertStatus(422)
+            ->assertStatus(400)
             ->assertJson([
                 "message" => "The given data was invalid.",
                 "errors" => [
