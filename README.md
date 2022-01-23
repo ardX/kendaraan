@@ -73,6 +73,7 @@ cd kendaraan
 composer install
 php artisan key:generate
 php artisan migrate
+php artisan db:seed
 php artisan serve
 ```
 Backend sudah dapat diakses melalui http://localhost:8000/api
